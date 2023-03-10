@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>gl_mcl</name>
+  <version>0.0.0</version>
+  <description>The gl_mcl package</description>
+
+  <maintainer email="81685394+HHorimoto@users.noreply.github.com">HHorimoto</maintainer>
+  
+  <license>LGPL</license>
+
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_msgs</depend>
+  <depend>tf2_geometry_msgs</depend>
+
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>sensor_msgs</depend>
+
+  <depend>roscpp</depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>
