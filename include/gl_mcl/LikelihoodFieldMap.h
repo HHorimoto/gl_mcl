@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "gl_mcl/Scan.h"
+#include "gl_mcl/Gnss.h"
 #include "nav_msgs/OccupancyGrid.h"
 
 class LikelihoodFieldMap

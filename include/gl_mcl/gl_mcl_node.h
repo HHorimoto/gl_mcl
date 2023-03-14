@@ -14,6 +14,7 @@
 #include "tf2/LinearMath/Transform.h"
 
 #include "sensor_msgs/LaserScan.h"
+#include "sensor_msgs/NavSatFix.h"
 #include "geometry_msgs/PoseWithCovarianceStamped.h"
 
 class GlMclNode
@@ -33,6 +34,7 @@ private:
 	ros::Publisher particlecloud_pub_;
 	ros::Publisher pose_pub_;
 	ros::Subscriber laser_scan_sub_;
+	ros::Subscriber gnss_sub_;
 	ros::Subscriber initial_pose_sub_;
 
 	std::string base_frame_id_;
@@ -63,6 +65,7 @@ private:
 	shared_ptr<LikelihoodFieldMap> initMap(void);
 	shared_ptr<OdomModel> initOdometry(void);
 
+	void cbGnss(const sensor_msgs::NavSatFix::ConstPtr &msg);
 	void cbScan(const sensor_msgs::LaserScan::ConstPtr &msg);
 	void initialPoseReceived(const geometry_msgs::PoseWithCovarianceStampedConstPtr &msg);
 };

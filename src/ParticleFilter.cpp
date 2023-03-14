@@ -25,6 +25,7 @@ ParticleFilter::ParticleFilter(double x, double y, double t, int num,
 		particles_.push_back(p);
 
 	scan_.processed_seq_ = -1;
+	gnss_.processed_seq_ = -1;
 }
 
 ParticleFilter::~ParticleFilter()
@@ -194,6 +195,17 @@ void ParticleFilter::setScan(const sensor_msgs::LaserScan::ConstPtr &msg)
 	scan_.angle_min_ = msg->angle_min;
 	scan_.angle_max_ = msg->angle_max;
 	scan_.angle_increment_ = msg->angle_increment;
+}
+
+void ParticleFilter::setGnss(const sensor_msgs::NavSatFix::ConstPtr &msg)
+{
+	gnss_.seq_ = msg->header.seq;
+	gnss_.status_ = msg->status.status;
+	gnss_.lat_ = msg->latitude;
+	gnss_.lon_ = msg->longitude;
+
+	// gnss_.x_ = 0;
+	// gnss_.y_ = 0;
 }
 
 bool ParticleFilter::normalize(void)

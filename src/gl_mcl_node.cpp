@@ -30,6 +30,7 @@ void GlMclNode::initTopic(void)
 	particlecloud_pub_ = nh_.advertise<geometry_msgs::PoseArray>("particlecloud", 2, true);
 	pose_pub_ = nh_.advertise<geometry_msgs::PoseWithCovarianceStamped>("mcl_pose", 2, true);
 	laser_scan_sub_ = nh_.subscribe("scan", 2, &GlMclNode::cbScan, this);
+	gnss_sub_ = nh_.subscribe("fix", 1, &GlMclNode::cbGnss, this);
 	initial_pose_sub_ = nh_.subscribe("initialpose", 2, &GlMclNode::initialPoseReceived, this);
 
 }
@@ -94,6 +95,11 @@ shared_ptr<LikelihoodFieldMap> GlMclNode::initMap(void)
 void GlMclNode::cbScan(const sensor_msgs::LaserScan::ConstPtr &msg)
 {
 	pf_->setScan(msg);
+}
+
+void GlMclNode::cbGnss(const sensor_msgs::NavSatFix::ConstPtr &msg)
+{
+	pf_->setGnss(msg);
 }
 
 void GlMclNode::initialPoseReceived(const geometry_msgs::PoseWithCovarianceStampedConstPtr& msg)

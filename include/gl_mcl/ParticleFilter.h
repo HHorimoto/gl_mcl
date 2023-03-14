@@ -14,6 +14,7 @@
 
 #include "nav_msgs/OccupancyGrid.h"
 #include "sensor_msgs/LaserScan.h"
+#include "sensor_msgs/NavSatFix.h"
 #include "gl_mcl/LikelihoodFieldMap.h"
 using namespace std;
 
@@ -32,6 +33,7 @@ public:
 	void initialize(double x, double y, double t);
 
 	void setScan(const sensor_msgs::LaserScan::ConstPtr &msg);
+	void setGnss(const sensor_msgs::NavSatFix::ConstPtr &msg);
 	void meanPose(double &x_mean, double &y_mean, double &t_mean,
 			double &x_var, double &y_var, double &t_var,
 			double &xy_cov, double &yt_cov, double &tx_cov);
@@ -40,6 +42,7 @@ private:
 	Pose *prev_odom_;
 
 	Scan scan_;
+	Gnss gnss_;
 
 	double normalizeAngle(double t);
 	void resampling(void);
